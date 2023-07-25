@@ -1,0 +1,56 @@
+.wrapper {
+    max-width: 46rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputContainer {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+
+    margin-top: calc(0px - 3.75rem);
+}
+
+.input {
+    background: var(--gray-500);
+    color: var(--white);
+
+    border: 1px solid var(--gray-700);
+    outline: none;
+
+    flex: 1;
+    border-radius: 8px;
+    padding: 1rem;
+
+    font-size: 1rem;
+}
+
+.input:focus {
+    outline: 1px solid var(--purple);
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--blue-dark);
+    color: var(--gray-100);
+
+    cursor: pointer;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background: var(--blue);
+}

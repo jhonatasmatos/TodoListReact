@@ -1,18 +1,27 @@
-import { Header } from "./components/Header"
+import { Header } from './components/Header'
+
+import { PlusCircle } from 'phosphor-react'
 
 import './global.css'
+import styles from './App.module.css'
 
 export function App() {
 
   return (
     <div>
       <Header />
-      <main>
-          <div>
-            <input type="text" name="inputTask" id="inputTask" />
-            <button title="Criar">
+      <main className={styles.wrapper}>
+          <div className={styles.inputContainer}>
+            <input 
+              className={styles.input} 
+              type="text" 
+              name="inputTask" 
+              id="inputTask"
+              placeholder='Adicione uma nova tarefa'
+            />
+            <button className={styles.button} title="Criar">
               Criar
-              x
+              <PlusCircle size={16} weight='bold' />
             </button>
           </div>
           <div>
