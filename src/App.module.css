@@ -54,3 +54,122 @@
 .button:hover {
     background: var(--blue);
 }
+
+.statusTasksWrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 4rem;
+    padding-bottom: 1.5rem;
+}
+
+.statusWrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.statusTasksWrapper .statusWrapper:first-child p {
+    font-size: 0.875rem;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.statusWrapper p {
+    font-size: 0.875rem;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.statusWrapper span {
+    background: var(--gray-400);
+    color: var(--white);
+    font-size: 0.75rem;
+    padding: 0.125rem 1rem ;
+    border-radius: 999px;
+}
+
+.withoutTasksBox {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 4rem 0;
+
+    border-top: 1px solid var(--gray-300);
+}
+
+.withoutTasksBox svg {
+    font-size: 3.5rem;
+}
+
+.withoutTasksBox strong {
+    font-size: 1rem;
+}
+
+.withoutTasksBox p {
+    font-size: 1rem;
+}
+
+.taskWrapper {
+    background: var(--gray-500);
+    color: var(--gray-100);
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0 0.75rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.taskWrapper button {
+    background: transparent;
+    border: 0;
+    line-height: 0;
+    color: var(--gray-300);
+    cursor: pointer;
+
+    transition: color 0.2s;
+}
+
+.taskWrapper button:last-child:hover {
+    color: var(--danger);
+}
+
+.taskWrapper .unchecked {
+    display: flex;
+    justify-content: center;
+    padding: 0.125rem;
+    font-size: 87.5%;
+    border: 1.5px solid var(--blue);
+    border-radius: 9999px;
+    background: none;
+    transition: border 0.15s;
+  
+    &:hover {
+      border: 1.5px solid var(--blue-dark);
+    }
+  }
+
+.taskWrapper .unchecked svg {
+visibility: hidden;
+}
+  
+.taskWrapper .checked {
+    display: flex;
+    justify-content: center;
+    padding: 0.125rem;
+    font-size: 87.5%;
+    border-radius: 9999px;
+    color: var(--gray-100);
+    background: var(--purple-dark);
+    border: 1.5px solid var(--purple-dark);
+    transition: background 0.15s border 0.15s;
+
+    &:hover {
+        border: 1.5px solid var(--purple);
+        background: var(--purple);
+    }
+}
