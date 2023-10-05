@@ -3,10 +3,11 @@ import { v4 } from 'uuid'
 
 import { Header } from './components/Header'
 
-import { PlusCircle, Trash, Check, ClipboardText } from 'phosphor-react'
+import { PlusCircle, ClipboardText } from 'phosphor-react'
 
 import './global.css'
 import styles from './App.module.css'
+import { Task } from './components/Task'
 
 interface Task {
   id: string
@@ -36,7 +37,7 @@ export function App() {
 
   function handleDeleteTask(taskId: string) {
     const tasksWithoutDeletedOne = tasks.filter(task => {
-        return task.id !== taskId
+      return task.id !== taskId
     })
 
     setTasks(tasksWithoutDeletedOne)
@@ -45,7 +46,7 @@ export function App() {
   function handleChangeStatus(taskId: string) {
     const taskToEdit = tasks.find(task => task.id === taskId)
 
-    if(taskToEdit) {
+    if (taskToEdit) {
       taskToEdit.completed = !taskToEdit.completed
     }
 
@@ -59,66 +60,64 @@ export function App() {
     <div>
       <Header />
       <main className={styles.wrapper}>
-          <div className={styles.inputContainer}>
-            <input 
-              className={styles.input} 
-              type="text" 
-              name="inputTask" 
-              id="inputTask"
-              value={newTask}
-              onChange={handleNewCommentChange}
-              placeholder='Adicione uma nova tarefa'
-            />
-            <button onClick={handleCreateTask} className={styles.button} title="Criar">
-              Criar
-              <PlusCircle size={16} weight='bold' />
-            </button>
-          </div>
-          
+        <div className={styles.inputContainer}>
+          <input
+            className={styles.input}
+            type="text"
+            name="inputTask"
+            id="inputTask"
+            value={newTask}
+            onChange={handleNewCommentChange}
+            placeholder='Adicione uma nova tarefa'
+          />
+          <button onClick={handleCreateTask} className={styles.button} title="Criar">
+            Criar
+            <PlusCircle size={16} weight='bold' />
+          </button>
+        </div>
 
-            <div className={styles.statusTasksWrapper}>
-              <div className={styles.statusWrapper}>
-                <p>Tarefas criadas</p>
-                <span>{tasks.length}</span>
-              </div>
-              <div className={styles.statusWrapper}>
-                <p>Concluídas</p>
-                <span>
-                  {
-                    tasks.length === 0 ? (
-                      0
-                    ): (
-                      <>{tasksDone} de {tasks.length}</>
-                    )
-                  }
-                </span>
-              </div>
+
+        <div className={styles.statusTasksWrapper}>
+          <div className={styles.statusWrapper}>
+            <p>Tarefas criadas</p>
+            <span>{tasks.length}</span>
+          </div>
+          <div className={styles.statusWrapper}>
+            <p>Concluídas</p>
+            <span>
+              {
+                tasks.length === 0 ? (
+                  0
+                ) : (
+                  <>{tasksDone} de {tasks.length}</>
+                )
+              }
+            </span>
+          </div>
+        </div>
+        {
+          tasks.length === 0 ? (
+            <div className={styles.withoutTasksBox}>
+              <ClipboardText weight='light' />
+              <strong>Você ainda não tem tarefas cadastradas</strong>
+              <p>Crie tarefas e organize seus itens a fazer</p>
             </div>
-            {
-              tasks.length === 0 ? (
-                <div className={styles.withoutTasksBox}>
-                  <ClipboardText weight='light' />
-                  <strong>Você ainda não tem tarefas cadastradas</strong>
-                  <p>Crie tarefas e organize seus itens a fazer</p>
-                </div>
-              ): (
-                <>
-                  {
-                    tasks.map(task => (
-                      <div key={task.id} className={styles.taskWrapper}>
-                        <button onClick={() => handleChangeStatus(task.id)} className={task.completed ? styles.checked : styles.unchecked}>
-                          <Check weight='bold' />
-                        </button>
-                        <p className={task.completed ? styles.taskComplete : styles.taskIncomplete}>{task.content}</p>
-                        <button onClick={() => handleDeleteTask(task.id)} type='button' title='Trash'>
-                          <Trash size={20} weight='bold' />
-                        </button>
-                      </div>
-                    ))
-                  }
-                </>
-              )
-            }
+          ) : (
+            <>
+              {
+                tasks.map(task => (
+                  <Task
+                    id={task.id}
+                    completed={task.completed}
+                    content={task.content}
+                    onChangeStatus={() => handleChangeStatus(task.id)}
+                    onDeleteTask={() => handleDeleteTask(task.id)}
+                  />
+                ))
+              }
+            </>
+          )
+        }
       </main>
     </div>
   )
